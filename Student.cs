@@ -10,7 +10,7 @@ namespace TestYourelf3CourseList
 
         public override string ToString()
         {
-            //TODO return full name
+            return FirstName + " " + LastName;
         }
     }
 }

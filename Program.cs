@@ -10,6 +10,9 @@ namespace TestYourelf3CourseList
     {
         static void Main(string[] args)
         {
+            Courses courses = new Courses();
+            courses.AddCourse("Programming", "C# torture with Ebbe Vang", 30);
+
         }
     }
 }

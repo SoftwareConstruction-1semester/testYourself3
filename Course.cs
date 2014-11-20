@@ -39,12 +39,12 @@ namespace TestYourelf3CourseList
                 bool hasStudent = false;
                 foreach (Student participant in _participants)
                 {
-                    if (participant.FirstName = firstName && participant.LastName = lastName)
+                    if (participant.FirstName == firstName && participant.LastName == lastName)
                     {
                         hasStudent = true;
                     }
                 }
-                if (hasStudent = false)
+                if (hasStudent == false)
                 {
                     Student s= new Student();
                     s.FirstName = firstName;
@@ -85,7 +85,7 @@ namespace TestYourelf3CourseList
             {
                 if ((participant.FirstName + " " + participant.LastName).Equals(fullName))
                 {
-                    hasStudent = true;
+                    toBeRemoved = participant;
                 }
             }
             if (toBeRemoved != null)
@@ -113,12 +113,12 @@ namespace TestYourelf3CourseList
         /// <returns></returns>
         public bool isValid()
         {
-            return (Name != "" && Description.Length > 20 && Description < 100);
+            return (Name != "" && Description.Length > 20 && Description.Length < 100);
         }
 
         public override string ToString()
         {
-            return Name + "\t" + Description;
+            return Name + "\t" + Description + "\t" + string.Join(", ", _participants);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,10 @@ namespace TestYourelf3CourseList
 
         public void PresentCourses()
         {
-            //TODO: print list of valid courses and (in columns?)
+            foreach (Course course in _courses)
+            {
+                Console.WriteLine(course);
+            }
         }
 
         public void PresentCoursesWithParticipants()
@@ -25,48 +29,136 @@ namespace TestYourelf3CourseList
 
         public bool AddCourse(String courseName, String courseDescription, int maxNumberOfParticipants)
         {
-            //TODO add courses to list
+            Course c = new Course();
+            c.Name = courseName;
+            c.Description = courseDescription;
+            c.MaxNumberOfParticipants = maxNumberOfParticipants;
+            AddCourse(c);
+            return true;
         }
-
 
         public bool AddCourse(Course course)
         {
-            //TODO add courses to list
+            bool hasCourseAlready = _courses.Contains(course);
+            
+            if (!hasCourseAlready)
+            {
+                _courses.Add(course);
+                return true;
+            }
+            return false;
         }
 
         public bool RemoveCourse(Course course)
         {
-            //TODO: remove course from list
+            if (_courses.Contains(course))
+            {
+                _courses.Remove(course);
+                return true;
+            }
+            return false;
         }
 
         public bool RemoveCourse(String name)
         {
-            //TODO: remove course from list
+            Course toBeremoved = null;
+            foreach (Course course in _courses)
+            {
+                if (course.Name.Equals(name))
+                {
+                    toBeremoved = course;
+                }
+            }
+            if (toBeremoved != null)
+            {
+                _courses.Remove(toBeremoved);
+                return true;
+            }
+            return false;
         }
 
         public Course GetCourse(String CourseName)
         {
-            //TODO: return course if it exists or null
+            foreach (Course course in _courses)
+            {
+                if (course.Name.Equals(CourseName))
+                {
+                    return course;
+                }
+            }
+            return null;
         }
 
         public bool AddStudentToCourse(String CourseName, Student student)
         {
-            //TODO: add student to course
+            Course c = null;
+            foreach (Course course in _courses)
+            {
+                if (course.Name.Equals(CourseName))
+                {
+                    c = course;
+                }
+            }
+            if (c != null)
+            {
+                c.addStudent(student);
+                return true;
+            }
+            return false;
         }
 
         public bool AddStudentToCourse(String CourseName, String firstName, String lastName)
         {
-            //TODO: add student to course
+            Course c = null;
+            foreach (Course course in _courses)
+            {
+                if (course.Name.Equals(CourseName))
+                {
+                    c = course;
+                }
+            }
+            if (c != null)
+            {
+                c.addStudent(firstName, lastName);
+                return true;
+            }
+            return false;
         }
         
         public bool RemoveStudentFromCourse(String CourseName, Student student)
         {
-            //TODO: remove student from course
+            Course c = null;
+            foreach (Course course in _courses)
+            {
+                if (course.Name.Equals(CourseName))
+                {
+                    c = course;
+                }
+            }
+            if (c != null)
+            {
+                c.removeStudent(student);
+                return true;
+            }
+            return false;
         }
 
         public bool RemoveStudentFromCourse(String CourseName, String fullName)
         {
-            //TODO: remove student from course
+            Course c = null;
+            foreach (Course course in _courses)
+            {
+                if (course.Name.Equals(CourseName))
+                {
+                    c = course;
+                }
+            }
+            if (c != null)
+            {
+                c.removeStudent(fullName);
+                return true;
+            }
+            return false;
         }
     }
 }

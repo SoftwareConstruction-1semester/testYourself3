@@ -20,12 +20,41 @@ namespace TestYourelf3CourseList
         /// <returns>true if student is added</returns>
         public bool addStudent(Student student)
         {
-            //TODO: add student to course of max number is not reached. increment number of participants
+            if (MaxNumberOfParticipants > NumberOfParticipants)
+            {
+                if (!_participants.Contains(student))
+                {
+                    _participants.Add(student);
+                    NumberOfParticipants++;
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool addStudent(String firstName, String lastName)
         {
-            //TODO: add student to course of max number is not reached. increment number of participants
+            if (MaxNumberOfParticipants > NumberOfParticipants)
+            {
+                bool hasStudent = false;
+                foreach (Student participant in _participants)
+                {
+                    if (participant.FirstName = firstName && participant.LastName = lastName)
+                    {
+                        hasStudent = true;
+                    }
+                }
+                if (hasStudent = false)
+                {
+                    Student s= new Student();
+                    s.FirstName = firstName;
+                    s.LastName = lastName;
+                    _participants.Add(s);
+                    NumberOfParticipants++;
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -35,7 +64,13 @@ namespace TestYourelf3CourseList
         /// <returns>true if student is removed</returns>
         public bool removeStudent(Student student)
         {
-            //TODO: remove student from course. return true if student is removed.
+            if (_participants.Contains(student))
+            {
+                _participants.Remove(student);
+                NumberOfParticipants--;
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -45,7 +80,21 @@ namespace TestYourelf3CourseList
         /// <returns>true if student is removed</returns>
         public bool removeStudent(String fullName)
         {
-            //TODO: remove student from course. return true if student is removed.
+            Student toBeRemoved = null;
+            foreach (Student participant in _participants)
+            {
+                if ((participant.FirstName + " " + participant.LastName).Equals(fullName))
+                {
+                    hasStudent = true;
+                }
+            }
+            if (toBeRemoved != null)
+            {
+                _participants.Remove(toBeRemoved);
+                NumberOfParticipants--;
+                return true;
+            }
+            return false;
         }
         
         /// <summary>
@@ -55,7 +104,7 @@ namespace TestYourelf3CourseList
         /// <returns>true if student is enrolled</returns>
         public bool isEnrolled(Student student)
         {
-            //TODO: Return true if student is enrolled
+            return _participants.Contains(student);
         }
 
         /// <summary>
@@ -64,12 +113,12 @@ namespace TestYourelf3CourseList
         /// <returns></returns>
         public bool isValid()
         {
-            //TODO: return true if name is used and description is between 20 and 100 characters
+            return (Name != "" && Description.Length > 20 && Description < 100);
         }
 
         public override string ToString()
         {
-            //TODO: return all information about course
+            return Name + "\t" + Description;
         }
     }
 }

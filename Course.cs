@@ -23,7 +23,7 @@ namespace TestYourelf3CourseList
             //TODO: add student to course of max number is not reached. increment number of participants
         }
 
-        public void addStudent(String firstName, String lastName)
+        public bool addStudent(String firstName, String lastName)
         {
             //TODO: add student to course of max number is not reached. increment number of participants
         }
